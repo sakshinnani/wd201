@@ -2,48 +2,33 @@ const todoList = () => {
     const all = [];
     const add = (todoItem) => {
       all.push(todoItem);
-    }
+    };
     const markAsComplete = (index) => {
       all[index].completed = true;
-    }
+    };
   
     const overdue = () => {
       // Write the date check condition here and return the array
       // of overdue items accordingly.
-      const currentDate = new Date();
-      return all.filter((todoItem) => {
-        const dueDate = new Date (todoItem.dueDate);
-        return !todoItem.completed && dueDate < currentDate;
-      });
+      const today = new Date().toISOString().split("T")[0];
+      const overdueItems = all.filter((todo) => todo.dueDate < today);
+      return overdueItems;
     };
   
     const dueToday = () => {
       // Write the date check condition here and return the array
       // of todo items that are due today accordingly.
-      const currentDate = new Date();
-      return all.filter((todoItem)=> {
-        const dueDate = new Date(todoItem.dueDate);
-        return(
-            !todoItem.completed &&
-            dueDate.toISOString().split("T")[0] ===
-            currentDate.toISOString().split("T")[0]
-        );
-      });
+      const today = new Date().toISOString.split("T")[0];
+      const itemsDueToday =all.filter((todo) =>todo.dueDate === today);
+      return itemsDueToday;
     };
   
     const dueLater = () => {
       // Write the date check condition here and return the array
       // of todo items that are due later accordingly.
-        const currentDate = new Date();
-        return all.filter((todoItem) => {
-            const dueDate = new Date(todoItem.dueDate);
-            return(
-                !todoItem.completed &&
-                dueDate > currentDate &&
-                dueDate.toISOString().split("T")[0] !==
-                currentDate.toISOString().split("T")[0]
-            );
-        });
+      const today = new Date().toISOString.split("T")[0];
+      const itemsDueLater =all.filter((todo) =>todo.dueDate > today);
+      return itemsDueLater;
       };
   
     const toDisplayableList = (list) => {
@@ -72,3 +57,5 @@ const todoList = () => {
       toDisplayableList,
     };
   };
+  
+module.exports = todoList;
