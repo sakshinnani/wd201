@@ -1,3 +1,4 @@
+// this is todo.js
 const todoList = () => {
     all = []
     const add = (todoItem) => {
@@ -94,13 +95,13 @@ const todoList = () => {
   var overdues = todos.overdue()
   var formattedOverdues = todos.toDisplayableList(overdues)
   console.log(formattedOverdues)
-  console.log("\n")
+  console.log("")
   
   console.log("Due Today")
   let itemsDueToday = todos.dueToday()
   let formattedItemsDueToday = todos.toDisplayableList(itemsDueToday)
   console.log(formattedItemsDueToday)
-  console.log("\n")
+ console.log("")
   
   console.log("Due Later")
   let itemsDueLater = todos.dueLater()
