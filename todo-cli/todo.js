@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-// todo.js
 const todoList = () => {
     let all = [];
     const add = (todoItem) => {
@@ -21,7 +20,7 @@ const todoList = () => {
     };
   
     const dueLater = () => {
-      let todaysdate = new Date().toISOString().split('T')[0]
+      let todaysdate = new Date().toISOString().split('T')[0];
       return all.filter((item) => item.dueDate > todaysdate);
     };
     const toDisplayableList = (list) => {
@@ -40,7 +39,7 @@ const todoList = () => {
         markAsComplete, 
         overdue, 
         dueToday,
-        dueLater,
+         dueLater,
         toDisplayableList, 
     };
   };
