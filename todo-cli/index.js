@@ -1,96 +1,38 @@
-// index.js
 const { connect } = require("./connectDB.js");
 const Todo = require("./TodoModel.js");
-const updateItem = async (id) => {
-  try {
-    const todo = await Todo.update(
-      { completed: true },
-      {
-        where: {
-          id: id,
-        },
-      },
-    );
 
-    console.log(todo.displayableString());
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-(async () => {
-  // await createTodo();
-  // await countItems();
-  await getAllTodos();
-  await updateItem(2);
-  await getAllTodos();
-})();
-
-const getSingleTodo = async () => {
-  try {
-    const todo = await Todo.findOne({
-      where: {
-        completed: false,
-      },
-      order: [["id", "DESC"]],
-    });
-
-    console.log(todo.displayableString());
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-(async () => {
-  // await createTodo();
-  // await countItems();
-  await getSingleTodo();
-})();
-
-const getAllTodos = async () => {
-  try {
-    const todos = await Todo.findAll();
-    const todoList = todos.map((todo) => todo.displayableString()).join("\n");
-    console.log(todoList);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-(async () => {
-  // await createTodo();
-  // await countItems();
-  await getAllTodos();
-})();
-// index.js
-const countItems = async () => {
-  try {
-    const totalCount = await Todo.count();
-    console.log(`Found ${totalCount} items in the table!`);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-(async () => {
-  // await createTodo();
-  await countItems();
-})();
-
-// index.js
 const createTodo = async () => {
   try {
     await connect();
     const todo = await Todo.addTask({
-      title: "Second Item",
+      title: "third_Item",
       dueDate: new Date(),
-      completed: false,
+      completed: true,
     });
-    console.log(`Created todo with ID : ${todo.id}`);
+    console.log(`created todo with ID : ${todo.id}`);
+  } catch (error) {
+    console.error(error);
+  }
+};
+const countItem = async () => {
+  try {
+    const totalCount = await Todo.count();
+    console.log(`found ${totalCount} item in the database`);
+  } catch (error) {
+    console.error(error);
+  }
+};
+const getalltodos = async () => {
+  try {
+    const find = await Todo.findAll();
+    const todolist = find.map((todo) => todo.displayableString()).join("\n");
+    console.log(todolist);
   } catch (error) {
     console.error(error);
   }
 };
 (async () => {
   await createTodo();
+  await countItem();
+  await getalltodos();
 })();
